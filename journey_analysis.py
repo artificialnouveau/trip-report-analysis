@@ -1,7 +1,8 @@
 from journal_analysis_function import JournalAnalysis
 
 # Initializing the class
-journal_analysis = JournalAnalysis()
+api_key = 'YOUR_API_KEY'
+journal_analysis = JournalAnalysis(api_key)
 
 # Text data
 text_data = "This is a long piece of text that you want to summarize. It could be an article, a research paper, or a book."
