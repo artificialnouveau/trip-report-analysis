@@ -72,5 +72,6 @@ This project makes use of the following libraries:
 - matplotlib
 - scikit-learn
 - torch
+- pysychonaut
 
 ---
