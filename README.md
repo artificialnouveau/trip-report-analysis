@@ -8,22 +8,21 @@ Journal or diary entries are treasure troves of personal experience, individual 
 
 This library serves as a bridge between narrative data and analytical insights, making it a powerful tool for anyone interested in understanding and analyzing journal or diary entries at scale.
 
-The JournalAnalysis class provides a set of functionalities to perform analysis on journal entries, specifically focusing on topic modelling and summarization. The features include:
+The `JournalAnalysis` class provides a set of functionalities to perform analysis on journal entries, specifically focusing on topic modelling and summarization. The features include:
 
-    Topic modelling using BERTopic
-    Visualizing topic distributions
-    Visualizing topics by most representative words
-    Document projection and clusterization by topic
-    Creating a topic heatmap
-    Finding most representative documents for each topic
-    Finding most representative topics for a specific word
-    Creating embeddings for specific features of the dataset
-    Text summarization using PEGASUS, GPT-3, and BERT models
+- Topic modelling using BERTopic
+- Visualizing topic distributions
+- Visualizing topics by most representative words
+- Document projection and clusterization by topic
+- Creating a topic heatmap
+- Finding most representative documents for each topic
+- Finding most representative topics for a specific word
+- Creating embeddings for specific features of the dataset
+- Text summarization using PEGASUS, GPT-3, and BERT models
 
-Usage
+## Usage
 
-python
-
+```python
 from journal_analysis import JournalAnalysis
 
 # Initialize the JournalAnalysis class
@@ -61,15 +60,17 @@ summary_gpt3 = journal_analysis.summarize_text_chatgpt('text')
 
 # Summarize text using BERT
 summary_bert = journal_analysis.summarize_text_bert('text')
+```
 
-Dependencies
+## Dependencies
 
 This project makes use of the following libraries:
+- BERTopic
+- transformers
+- pandas
+- seaborn
+- matplotlib
+- scikit-learn
+- torch
 
-    BERTopic
-    transformers
-    pandas
-    seaborn
-    matplotlib
-    scikit-learn
-    torch
+---
