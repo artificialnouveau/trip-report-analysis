@@ -6,31 +6,70 @@ The Journal Analytics Library is a comprehensive solution designed for deep anal
 
 Journal or diary entries are treasure troves of personal experience, individual perception, and intricate emotion. However, navigating through the sheer volume of these entries and deriving useful insights from them can be challenging. This library strives to make this process easier, enabling researchers and curious individuals to unravel the trends, patterns, and sentiments encapsulated in the entries over time.
 
-## Functionality
-
-The library offers a robust set of functionalities to facilitate the analysis of journal entries:
-
-1. **Topic Modelling using BERTopic**: This functionality allows users to cluster documents by topic, identifying common themes across multiple entries.
-
-2. **Visualization of Topic Distribution**: This allows users to understand the prevalence of various topics across the dataset.
-
-3. **Visualization of Topics by Most Representative Words**: Users can comprehend the nature of the topics through their most representative words.
-
-4. **Visualization of Document Projection and Clusterization by Topic**: This provides a visual aid to understand the distribution of documents and their clustering based on topics.
-
-5. **Visualization of Topic Heatmap**: Users can understand the relationship and similarity between different topics.
-
-6. **Find the Most Representative Documents from Each Topic**: This allows users to delve deeper into each topic by studying the most representative documents.
-
-7. **Find the Most Representative Topics According to a Word**: Users can trace topics most associated with a specific word.
-
-8. **Creating Embeddings from Abstracts, Titles, Authors Keywords, or Keywords Plus**: This allows for more advanced text analysis.
-
-9. **Abstractive Text Summarization using PEGASUS**: This can be used on a set of selected documents or all documents to provide brief summaries.
-
-10. **Abstractive Text Summarization using ChatGPT**: This also provides summaries for a set of selected documents or all documents. Please note, this requires the user to have an API key which can be obtained from [OpenAI's platform](https://platform.openai.com/account/api-keys).
-
-11. **Extractive Text Summarization using BERT**: This feature can be used on a set of selected documents or all documents to extract the most important sentences.
-
-
 This library serves as a bridge between narrative data and analytical insights, making it a powerful tool for anyone interested in understanding and analyzing journal or diary entries at scale.
+
+The JournalAnalysis class provides a set of functionalities to perform analysis on journal entries, specifically focusing on topic modelling and summarization. The features include:
+
+    Topic modelling using BERTopic
+    Visualizing topic distributions
+    Visualizing topics by most representative words
+    Document projection and clusterization by topic
+    Creating a topic heatmap
+    Finding most representative documents for each topic
+    Finding most representative topics for a specific word
+    Creating embeddings for specific features of the dataset
+    Text summarization using PEGASUS, GPT-3, and BERT models
+
+Usage
+
+python
+
+from journal_analysis import JournalAnalysis
+
+# Initialize the JournalAnalysis class
+journal_analysis = JournalAnalysis()
+
+# Perform topic modelling on a DataFrame
+model, topics = journal_analysis.topic_modelling(df, 'text_column')
+
+# Visualize topic distribution
+journal_analysis.visualize_topic_distribution(topics)
+
+# Visualize topics by most representative words
+journal_analysis.visualize_topics_by_words(model)
+
+# Visualize document projection by topic
+journal_analysis.visualize_document_projection(model, documents, topics)
+
+# Visualize topic heatmap
+journal_analysis.visualize_topic_heatmap(model)
+
+# Find the most representative document for each topic
+journal_analysis.find_representative_docs(model, documents, topics)
+
+# Find the most representative topics for a specific word
+journal_analysis.find_representative_topics(model, 'word')
+
+# Create embeddings for a specific feature of the dataset
+embeddings = journal_analysis.create_embeddings(data, 'abstract')
+
+# Summarize text using PEGASUS
+summary_pegasus = journal_analysis.summarize_text_pegasus('text')
+
+# Summarize text using GPT-3
+summary_gpt3 = journal_analysis.summarize_text_chatgpt('text')
+
+# Summarize text using BERT
+summary_bert = journal_analysis.summarize_text_bert('text')
+
+Dependencies
+
+This project makes use of the following libraries:
+
+    BERTopic
+    transformers
+    pandas
+    seaborn
+    matplotlib
+    scikit-learn
+    torch
