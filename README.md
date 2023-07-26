@@ -32,6 +32,5 @@ The library offers a robust set of functionalities to facilitate the analysis of
 
 11. **Extractive Text Summarization using BERT**: This feature can be used on a set of selected documents or all documents to extract the most important sentences.
 
-12. **Analysis using ChatGPT**: Users can ask ChatGPT to analyze the following results: EDA Report, WordCloud, N-Grams, Evolution Plot, Sankey Diagram, Authors Productivity Plot, Bar Plots, Citation Analysis, Collaboration Analysis, Similarity Analysis, and World Map Collaboration Analysis. (Refer to Example 08 for more details). This also requires the user to have an API key from [OpenAI](https://platform.openai.com/account/api-keys).
 
 This library serves as a bridge between narrative data and analytical insights, making it a powerful tool for anyone interested in understanding and analyzing journal or diary entries at scale.
