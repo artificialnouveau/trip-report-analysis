@@ -51,7 +51,6 @@ def topic_modelling(df, text_column):
 
     topics, _ = model.fit_transform(documents)
     return model, topics
-s
 
     def visualize_topic_distribution(self, topics):
         topic_series = pd.Series(topics)
@@ -63,10 +62,24 @@ s
         plt.title('Topic Distribution')
         plt.show()
 
+
     def visualize_topics_by_words(self, model):
-        topic_words = model.get_topic_info()
-        for _, row in topic_words.iterrows():
-            print(f"Topic {row['Topic']}: {row['Words']}")
+        topic_info = model.get_topic_info()
+    
+        for index, row in topic_info.iterrows():
+            topic_words_probs = model.get_topic(row['Topic'])
+    
+            words = [word for word, prob in topic_words_probs]
+            probs = [prob for word, prob in topic_words_probs]
+    
+            plt.figure(figsize=(10, 5))
+            plt.bar(words, probs, color='lightblue')
+            plt.title(f"Topic {row['Topic']}")
+            plt.xlabel("Words")
+            plt.ylabel("Probability")
+            plt.xticks(rotation=90)
+            plt.show()
+
 
     def visualize_document_projection(self, model, documents, topics):
         embeddings = model._extract_embeddings(documents)
