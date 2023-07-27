@@ -23,7 +23,7 @@ The `JournalAnalysis` class provides a set of functionalities to perform analysi
 ## Usage
 
 ```python
-from journal_analysis import JournalAnalysis
+from journal_analysis_function import JournalAnalysis
 
 # Initialize the JournalAnalysis class
 journal_analysis = JournalAnalysis()
