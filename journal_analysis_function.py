@@ -17,40 +17,40 @@ class JournalAnalysis:
 
     def __init__(self, api_key=None):
         self.api_key = api_key
-
-def clean_text(text):
-    # Removing everything except alphabets`
-    text = re.sub("[^a-zA-Z]"," ",text)
     
-    # Removing whitespaces
-    text = ' '.join(text.split())
+    def clean_text(text):
+        # Removing everything except alphabets`
+        text = re.sub("[^a-zA-Z]"," ",text)
+        
+        # Removing whitespaces
+        text = ' '.join(text.split())
+        
+        # Converting text to lowercase
+        text = text.lower()
+        
+        # Removing stop words
+        text = ' '.join([word for word in text.split() if word not in (ENGLISH_STOP_WORDS)])
+        
+        # Lemmatization
+        lemmatizer = WordNetLemmatizer()
+        text = ' '.join([lemmatizer.lemmatize(word) for word in text.split()])
     
-    # Converting text to lowercase
-    text = text.lower()
+        return text
+
+    def topic_modelling(df, text_column):
+        # Apply text preprocessing
+        df[text_column] = df[text_column].apply(clean_text)
     
-    # Removing stop words
-    text = ' '.join([word for word in text.split() if word not in (ENGLISH_STOP_WORDS)])
+        documents = df[text_column].tolist()
     
-    # Lemmatization
-    lemmatizer = WordNetLemmatizer()
-    text = ' '.join([lemmatizer.lemmatize(word) for word in text.split()])
-
-    return text
-
-def topic_modelling(df, text_column):
-    # Apply text preprocessing
-    df[text_column] = df[text_column].apply(clean_text)
-
-    documents = df[text_column].tolist()
-
-    # Initializing BERTopic model
-    # "english" is the language used for stop words and model
-    # n_gram_range is set to (1, 2) to create uni-grams and bi-grams
-    # min_topic_size is set to 5, to ignore topics with fewer than 5 documents
-    model = BERTopic(language="english", calculate_probabilities=True, n_gram_range=(1, 2), min_topic_size=5)
-
-    topics, _ = model.fit_transform(documents)
-    return model, topics
+        # Initializing BERTopic model
+        # "english" is the language used for stop words and model
+        # n_gram_range is set to (1, 2) to create uni-grams and bi-grams
+        # min_topic_size is set to 5, to ignore topics with fewer than 5 documents
+        model = BERTopic(language="english", calculate_probabilities=True, n_gram_range=(1, 2), min_topic_size=5)
+    
+        topics, _ = model.fit_transform(documents)
+        return model, topics
 
     def visualize_topic_distribution(self, topics):
         topic_series = pd.Series(topics)
